@@ -1,0 +1,58 @@
+{
+  "version": "0.2.0",
+  // ---------------------------------------------------------------------------
+  // 【注意】デバッグ実行の前に、必ずターミナルで以下のコマンドを実行してください
+  //  $ make dev (または npm run dev)
+  //  これらが動いていないと、フロントエンドのデバッグは機能しません。
+  // ---------------------------------------------------------------------------
+  "configurations": [
+    {
+      "name": "PHP Backend Xdebug",
+      "type": "php",
+      "request": "launch",
+      "port": 9003,
+      "pathMappings": {
+        "/var/www/html": "${workspaceFolder}"
+      },
+      "hostname": "0.0.0.0",
+      "xdebugSettings": {
+        "max_children": 128,
+        "max_data": 1024,
+        "max_depth": 3
+      },
+      "log": false,
+      "ignore": [
+        "**/vendor/**/*.php", // パターン1: ワイルドカード
+        "${workspaceFolder}/vendor/**/*.php", // パターン2: ローカルPCの絶対パス
+        "/var/www/html/vendor/**/*.php" // パターン3: Dockerコンテナ内の絶対パス
+      ],
+      "presentation": {
+        "hidden": true
+      }
+    },
+    {
+      "type": "chrome",
+      "name": "React/Typescript Frontend Debug",
+      "request": "launch",
+      "url": "http://localhost",
+      "webRoot": "${workspaceFolder}",
+      "userDataDir": "${workspaceFolder}/.vscode/chrome",
+      "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+      "sourceMapPathOverrides": {
+        "/resources/*": "${webRoot}/resources/*",
+        "webpack:///resources/*": "${webRoot}/resources/*"
+      },
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**", "**/app-page.runtime.dev.js", "@react-refresh"],
+      "presentation": {
+        "hidden": true
+      }
+    }
+  ],
+  "compounds": [
+    {
+      // 【変更】メニューに条件が表示されるようにする
+      "name": "Full Stack Debug (PHP + React/Typescript)",
+      "configurations": ["PHP Backend Xdebug", "React/Typescript Frontend Debug"]
+    }
+  ]
+}

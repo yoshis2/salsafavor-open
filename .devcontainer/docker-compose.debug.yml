@@ -1,0 +1,5 @@
+services:
+  laravel.test:
+    environment:
+      XDEBUG_MODE: "${SAIL_XDEBUG_MODE:-debug}"
+      XDEBUG_CONFIG: "client_host=localhost client_port=9003 discover_client_host=no"

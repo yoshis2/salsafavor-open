@@ -1,0 +1,53 @@
+name: Deploy to Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if running from tag
+        if: github.ref_type != 'tag'
+        run: |
+          echo "❌ Error: このワークフローはタグを選択して実行してください。"
+          echo "Please select a TAG in the 'Use workflow from' dropdown."
+          exit 1
+
+  deploy:
+    runs-on: ubuntu-latest # 実行するOSを指定
+    needs: check-tag
+
+    steps:
+      # コードを取得
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Scan public key
+        run: |
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Pull to server
+        run: |
+          ssh -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << 'EOF'
+            cd /home/yoshis2/salsafavor.com/public_html || exit
+            git fetch origin ${{ github.ref_name }} || exit
+            git reset --hard FETCH_HEAD || exit
+          EOF
+
+      - name: Deploy to server
+        run: |
+          ssh -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << 'EOF'
+            cd /home/yoshis2/salsafavor.com/public_html || exit
+            /usr/bin/php8.4 ~/bin/composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev || exit
+            npm ci || npm install || exit
+            npm run build || exit
+            /usr/bin/php8.4 artisan config:cache || exit
+            /usr/bin/php8.4 artisan route:cache || exit
+            /usr/bin/php8.4 artisan view:cache || exit
+          EOF

@@ -1,0 +1,7 @@
+/* Tailwind v4 entry */
+@config "../../tailwind.config.ts";
+@import "./layout.css";
+@import "./style.css";
+@import "./kaereba.css";
+
+@import "tailwindcss";

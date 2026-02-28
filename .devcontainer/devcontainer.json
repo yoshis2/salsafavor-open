@@ -1,0 +1,69 @@
+{
+  "name": "rehearts",
+  "dockerComposeFile": ["../docker-compose.yml", "docker-compose.debug.yml"],
+  "service": "laravel.test",
+  "workspaceFolder": "/var/www/html",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // --- PHP / Laravel 開発 ---
+        "bmewburn.vscode-intelephense-client", // PHPの強力な補完・定義ジャンプ
+        "amiralizadeh9480.laravel-extra-intellisense", // Laravel特有の補完 (Route, View等)
+        "onecentlin.laravel-blade", // Bladeテンプレートのシンタックスハイライトと補完
+        "open-southeners.laravel-pint", // Laravelのコード整形（フォーマッター）
+        "shufo.vscode-blade-formatter", // Bladeテンプレートのコード整形（フォーマッター）
+        "xdebug.php-debug", // PHPのデバッグ (Xdebug)
+
+        // --- フロントエンド (React / TypeScript / CSS) ---
+        "dbaeumer.vscode-eslint", // JS/TSの構文チェック
+        "esbenp.prettier-vscode", // コード整形 (Formatter)
+        "bradlc.vscode-tailwindcss", // Tailwind CSSの補完
+        "dsznajder.es7-react-js-snippets", // React用スニペット
+        "yoavbls.pretty-ts-errors", // TypeScriptのエラーを見やすく表示
+        "ms-playwright.playwright", // Playwrightのテスト実行
+
+        // --- ドキュメント / 設定ファイル ---
+        "yzhang.markdown-all-in-one", // Markdown支援
+        "bierner.markdown-mermaid", // Markdown内でのMermaid図表示
+        "redhat.vscode-yaml", // YAMLファイルの補完
+        "mikestead.dotenv", // .envファイルのハイライト
+
+        // --- AI 支援 ---
+        "github.copilot", // GitHub Copilot
+        "github.copilot-chat", // Copilot Chat
+        "saoudrizwan.claude-dev", // Cline (旧Claude Dev): AIエージェント
+
+        // --- Git / GitHub ---
+        "mhutchie.git-graph", // Git履歴のグラフ表示
+        "github.vscode-pull-request-github", // GitHub PR管理
+        "github.vscode-github-actions", // GitHub Actions管理
+
+        // --- 開発環境 / 日本語化 ---
+        "ms-ceintl.vscode-language-pack-ja", // 日本語化パック
+        "ms-vscode-remote.remote-containers", // Dev Containers (コンテナ接続)
+
+        // --- UI / テーマ / アイコン ---
+        "github.github-vscode-theme", // GitHubテーマ
+        "pkief.material-icon-theme", // アイコンテーマ
+
+        // --- 生産性向上 / その他 ---
+        "alefragnani.bookmarks", // ブックマーク機能
+        "gruntfuggly.todo-tree", // TODOコメントの一覧表示
+        "k--kato.intellij-idea-keybindings" // IntelliJ風キーバインド
+      ],
+      "settings": {
+        "php.debug.executablePath": "/usr/local/bin/php"
+      }
+    }
+  },
+  "remoteUser": "sail",
+  "containerEnv": {
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "mounts": ["source=${localEnv:HOME}/.ssh,target=/home/sail/.ssh-host,type=bind,readonly"],
+  "postCreateCommand": ".devcontainer/post-create.sh"
+}

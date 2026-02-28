@@ -1,0 +1,48 @@
+{
+  "recommendations": [
+    // --- PHP / Laravel 開発 ---
+    "bmewburn.vscode-intelephense-client", // PHPの強力な補完・定義ジャンプ（必須級）
+    "amiralizadeh9480.laravel-extra-intellisense", // Laravel特有の補完（RouteやViewなど）
+    "open-southeners.laravel-pint", // Laravelのコード整形（フォーマッター）
+    "shufo.vscode-blade-formatter", // Bladeテンプレートのコード整形（フォーマッター）
+    "onecentlin.laravel-blade", // Bladeテンプレートのシンタックスハイライトと補完
+    "xdebug.php-debug", // PHPのデバッグ用
+
+    // --- フロントエンド (React / TypeScript / CSS) ---
+    "dbaeumer.vscode-eslint", // JavaScript/TypeScriptの構文チェック
+    "esbenp.prettier-vscode", // コードの自動整形（フォーマッター）
+    "bradlc.vscode-tailwindcss", // Tailwind CSSのクラス名補完
+    "dsznajder.es7-react-js-snippets", // React開発用のスニペット集
+    "yoavbls.pretty-ts-errors", // TypeScriptのエラーを見やすく表示
+    "ms-playwright.playwright", // Playwrightのテスト実行
+
+    // --- ドキュメント / 設定ファイル ---
+    "yzhang.markdown-all-in-one", // Markdownのプレビューやショートカット
+    "bierner.markdown-mermaid", // Markdown内でMermaid記法の図を表示
+    "redhat.vscode-yaml", // YAMLファイルの検証と補完
+    "mikestead.dotenv", // .envファイルのシンタックスハイライト
+
+    // --- AI 支援 ---
+    "github.copilot", // コードの自動生成・補完
+    "github.copilot-chat", // エディタ内でのAIチャット
+    "saoudrizwan.claude-dev", // Cline (旧Claude Dev): 自律型AIコーディングエージェント
+
+    // --- Git / バージョン管理 ---
+    "mhutchie.git-graph", // Gitの履歴をグラフィカルに表示
+    "github.vscode-pull-request-github", // VS Code上でプルリクエストを管理
+    "github.vscode-github-actions", // GitHub Actionsのワークフロー管理
+
+    // --- 開発環境 / ローカライズ ---
+    "ms-ceintl.vscode-language-pack-ja", // 日本語化パック
+    "ms-vscode-remote.remote-containers", // Docker(Dev Containers)環境への接続
+
+    // --- UI / テーマ / アイコン ---
+    "github.github-vscode-theme", // GitHub風のカラーテーマ
+    "pkief.material-icon-theme", // フォルダやファイルを見やすいアイコンに変更
+
+    // --- 生産性向上 / その他 ---
+    "alefragnani.bookmarks", // コード内の特定の行にブックマークを付ける
+    "gruntfuggly.todo-tree", // TODOやFIXMEコメントを一覧表示
+    "k--kato.intellij-idea-keybindings" // IntelliJ IDEA風のキーバインドにする
+  ]
+}

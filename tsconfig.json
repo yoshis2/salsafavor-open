@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "types": ["vite/client", "ziggy-js"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["resources/js/*"],
+      "@css/*": ["resources/css/*"]
+    }
+  },
+  "include": [
+    "resources/js/**/*",
+    "resources/js/types/**/*",
+    "resources/css/**/*",
+    "vite.config.ts",
+    "tailwind.config.ts"
+  ],
+  "exclude": ["node_modules", "public"]
+}

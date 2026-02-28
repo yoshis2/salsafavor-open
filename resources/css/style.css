@@ -1,0 +1,344 @@
+/* 画像加工 */
+.img-responsive {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.image-management-width {
+    max-width: 600px;
+    min-width: 200px;
+    height: auto;
+    text-align: center;
+}
+
+.tr-verbose {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.verbose {
+    white-space: nowrap;
+}
+
+.image-user-parent {
+    width: 100%;
+}
+
+.image-user-width {
+    max-width: 100%;
+    max-height: 500px;
+    height: auto;
+}
+
+.user-image-thumbnail {
+    display: inline-block;
+    margin:0 auto;
+}
+
+/* テキストエリアの高さ */
+.textarea-price {
+    height: 200px !important;
+    line-height: 1.1;
+    padding: 1em;
+}
+
+.textarea-free {
+    height: 400px !important;
+}
+
+/* 初心者の方への説明概要 */
+.overview {
+    position: relative;
+    margin: 2em 0;
+    padding: 0.5em 1em;
+    border: solid 1px #B92A2C;
+    border-radius: 5px;
+}
+
+/* FAQアコーディオン */
+.faq-accordion {
+    margin-top: 12px;
+    display: grid;
+    gap: 12px;
+}
+
+.faq-item {
+    border: 1px solid #e3b0b1;
+    border-radius: 8px;
+    background: #fff7f7;
+    overflow: hidden;
+}
+
+.faq-summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #ffe9e0;
+}
+
+.faq-summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-summary::after {
+    content: "+";
+    margin-left: auto;
+    font-weight: bold;
+    color: #B92A2C;
+}
+
+.faq-item[open] .faq-summary::after {
+    content: "-";
+}
+
+.faq-summary:focus-visible {
+    outline: 2px solid #B92A2C;
+    outline-offset: 2px;
+}
+
+.faq-answer {
+    display: block;
+    padding: 12px 14px 14px;
+    background: #ffffff;
+}
+
+.faq-answer .faq-label {
+    margin-right: 8px;
+}
+
+.faq-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: #B92A2C;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+    flex: 0 0 24px;
+}
+
+/* 初心者ページ本文リンク */
+.beginner-article a:not(.btn) {
+    color: #B92A2C;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+}
+
+.beginner-article a:not(.btn):hover {
+    color: #d26466;
+}
+
+.beginner-article a:not(.btn):focus-visible {
+    outline: 2px solid #B92A2C;
+    outline-offset: 2px;
+}
+.overview .box-title {
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 10px;
+    padding: 0 9px;
+    line-height: 1;
+    font-size: 16px;
+    background: #FFF;
+    color: #B92A2C;
+    font-weight: 600;
+}
+.overview p {
+    margin: 0;
+    padding: 0;
+}
+
+/* youtube */
+.frame-wrapper {
+  width: 80%;
+  margin: auto;
+}
+
+.frame-wrapper_video {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.frame-wrapper_video iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* Youtubeここまで */
+
+/* YahooAPI利用時のタイトルバナー */
+#banner {
+    text-align: center;
+    font-weight: bold;
+    color: #B92A2C;/*文字色*/
+    border: solid 3px #B92A2C;/*線色*/
+    margin: 10px;
+    padding: 0.5em;/*文字周りの余白*/
+    border-radius: 0.5em;/*角丸*/
+}
+
+/* bootstrap オーバーライド */
+.jumbotron {
+  background: ghostwhite;
+  border: solid 1px #d65f41;
+}
+
+.form-control::placeholder{
+    color: #cccccc;
+}
+
+/* その他 */
+.container-xl{
+    letter-spacing: 2px;
+}
+
+.affiliate-center {
+    padding: 30px 0px 0px 0px;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin:0 auto;
+}
+
+.pagenate-center {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin:0 auto;
+}
+
+.margin {
+    margin: 30px 0px 10px 0px;
+}
+
+/* ボタン */
+.form-submit-position {
+    margin: 30px 0px 30px 0px;
+    text-align: center;
+}
+
+.form-submit-option {
+    width: 40%;
+}
+
+.admin-button-margin {
+  margin: 0px 50px 30px 0px;
+  float: right;
+}
+
+.image-item {
+    cursor: grab; /* ドラッグ可能なアイテムのカーソル */
+}
+.image-item:active {
+    cursor: grabbing; /* ドラッグ中のアイテムのカーソル */
+}
+.blue-background-class { /* SortableJS の ghostClass に指定したクラス */
+    background-color: #e9ecef;
+}
+
+/* カルーセルアイテムのコンテナに固定の高さを設定 */
+.carousel-item-fixed-height {
+    /* ★お好みの高さに調整してください (例: 300px, 450pxなど) */
+    height: 500px;
+    /* コンテナからはみ出た画像を隠す */
+    overflow: hidden;
+    /* 画像読み込み中の背景色 (任意) */
+    background-color: #f8f9fa;
+}
+
+/* カルーセル内の画像スタイル */
+.carousel-item-fixed-height img {
+    /* 親コンテナの幅に合わせる */
+    width: 100%;
+    /* 親コンテナの高さに合わせる */
+    height: 100%;
+    /* アスペクト比を維持しつつ、コンテナ全体を覆うように調整。はみ出た部分はトリミング。 */
+    object-fit: cover;
+    /* 画像の中央を基準に表示・トリミング */
+    object-position: center;
+    /* クリック可能であることを示すカーソルを追加 */
+    cursor: pointer;
+}
+
+#carousel-thumbnails .thumbnail-item img {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    border: 3px solid transparent;
+    padding: 2px;
+    /* Optional: to make border visible without changing size too much */
+}
+
+#carousel-thumbnails .thumbnail-item img:hover {
+    opacity: 1;
+}
+
+#carousel-thumbnails .thumbnail-item img.active-thumbnail {
+    opacity: 1;
+    border-color: #007bff;
+    /* Bootstrap primary color */
+}
+
+
+@media screen and (max-width: 850px) {
+    .frame-wrapper {
+        width: 100%;
+        margin: auto;
+    }
+    .form-submit-option {
+        width: 70%;
+    }
+}
+
+
+@media screen and (max-width: 576px) {
+    .carousel-item-fixed-height {
+        /* ★お好みの高さに調整してください (例: 300px, 450pxなど) */
+        height: 200px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .carousel-item-fixed-height {
+        /* ★お好みの高さに調整してください (例: 300px, 450pxなど) */
+        height: 250px;
+    }
+}
+@media screen and (max-width: 992px) {
+    .carousel-item-fixed-height {
+        /* ★お好みの高さに調整してください (例: 300px, 450pxなど) */
+        height: 300px;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .carousel-item-fixed-height {
+        /* ★お好みの高さに調整してください (例: 300px, 450pxなど) */
+        height: 350px;
+    }
+}
+@media screen and (max-width: 1400px) {
+    .carousel-item-fixed-height {
+        /* ★お好みの高さに調整してください (例: 300px, 450pxなど) */
+        height: 400px;
+    }
+}
+@media screen and (min-width: 1400px) {
+    .carousel-item-fixed-height {
+        /* ★お好みの高さに調整してください (例: 300px, 450pxなど) */
+        height: 500px;
+    }
+}

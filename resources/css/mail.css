@@ -1,0 +1,9 @@
+article {
+    max-width: 600px;
+    margin:30px 0px 0px 20px;
+}
+
+.center {
+    text-align: center;
+    margin:20px;
+}

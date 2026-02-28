@@ -1,0 +1,120 @@
+name: Laravel Tests And Static Analysis
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Run static analysis
+        run: ./vendor/bin/phpstan analyze
+
+      - name: Run code style checks
+        run: ./vendor/bin/pint --test
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+
+    env:
+      APP_ENV: testing
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: "3306"
+      DB_DATABASE: salsafavor_test
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      REDIS_HOST: 127.0.0.1
+      REDIS_PASSWORD: "null"
+      REDIS_PORT: "6379"
+
+    services:
+      mysql:
+        image: mysql:9.2
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: salsafavor
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+        ports:
+          - 3306:3306
+
+      redis:
+        image: redis:7
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
+          coverage: none
+
+      - name: Install composer dependencies
+        run: composer install --no-ansi --no-interaction --no-scripts --prefer-dist
+
+      - name: Set up environment
+        run: |
+          cp .env.example .env.testing
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Build assets
+        run: npm run build
+
+      - name: Ensure Mix manifest exists
+        run: |
+          if [ ! -f public/mix-manifest.json ]; then
+            echo '{"/js/app.js":"/js/app.js","/js/youtube-lazyload.js":"/js/youtube-lazyload.js","/js/button-disable.js":"/js/button-disable.js","/js/carousel.js":"/js/carousel.js","/js/sortable.js":"/js/sortable.js"}' > public/mix-manifest.json
+          fi
+
+      - name: Generate application key
+        run: php artisan key:generate --env=testing
+
+      - name: Clear application cache
+        run: php artisan cache:clear
+
+      - name: Create test database
+        run: mysql -h 127.0.0.1 -P 3306 -u root -proot -e "CREATE DATABASE IF NOT EXISTS salsafavor_test;"
+
+      - name: Run Laravel tests
+        run: php artisan test
